@@ -1,0 +1,70 @@
+* {
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    box-sizing: padding-box;
+    list-style-type: none;
+    text-decoration: none;
+}
+
+#gameWrapper {
+    margin: auto;
+    width: 50%;
+    height: 550px;
+    border: 1px solid #000;
+}
+
+#statsMenu {
+    display: flex;
+    text-align: center;
+    width: 100%;
+}
+
+#actionStats,
+#enemyStats,
+#levelStats,
+#sp {
+    flex: 1;
+}
+
+#enemyField {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #000;
+    margin: 10% auto;
+}
+
+#optionsMenu {
+    display: flex;
+    width: 75%;
+    margin: auto;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#upgWrapper,
+#restartWrapper {
+    text-align: center;
+    font-size: 1.25rem;
+}
+
+#upgMenu {
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 10%;
+    width: 120%;
+}
+
+#restartGame {
+    border: 1px solid #f00;
+    border-radius: 10px;
+    padding: 10%;
+    width: 120%;
+}
+
+#upgMenu:hover {
+    cursor: pointer;
+}
+
+#restartGame {
+    cursor: pointer;
+}
