@@ -1,3 +1,4 @@
+//Declare global variables
 const enemyField = document.querySelector('#enemyField');
 const upgrades = document.querySelector('#upgMenu');
 const restart = document.querySelector('#restartGame');
@@ -25,13 +26,6 @@ let exp = 0;
 let remExp = 100;
 let sp = 0;
 
-//Load default stat and menu values
-const loadDefaults = () => {
-    gameLvlSpan.innerHTML = level;
-    plyrExpSpan.innerHTML = exp;
-    remExpSpan.innerHTML = remExp;
-}
-
 //Creates a random enemy
 const createEnemy = () => {
     let randNum = Math.floor(Math.random() * 3) + 1;
@@ -50,14 +44,37 @@ const attack = () => {
         enemyHealthP.innerHTML = enemyHitPoints;
         if (enemyHitPoints <= 0) {
             killEnemy();
+            updateLevel();
         }
+        damageDealt();
+        totalClicks();
+        earnSP();
     });
 }
 
 //Enemy death behavior
 const killEnemy = () => {
     createEnemy();
-    updateLevel();
+    earnSP(25);
+}
+
+//Earn slayerpoints when monsters are killed
+const earnSP = increase => {
+    sp += increase;
+    return increase;
+}
+
+//Tally up total damage dealt
+const damageDealt = () => {
+    totalDmgSpan.innerHTML = totalDamage;
+    totalDamage += hitPower;
+}
+
+//Tally up total amount of clicks/taps on enemy
+const totalClicks = () => {
+    totalHitsSpan.innerHTML = totalHits;
+    totalHits += 1;
+    spSpan.innerHTML = earnSP(2);
 }
 
 //Update experience and level
@@ -69,47 +86,58 @@ const updateLevel = () => {
     if (exp > 0 && exp < 100) {
         level = 1;
         remExp = 100 - exp;
-    } else if (exp > 99 && exp < 500) {
+        earnSP();
+    } else if (exp > 99 && exp < 250) {
         level = 2;
-        hitPower += 25;
+        hitPower += 5;
         remExp = 500 - exp;
-    } else if (exp > 499 && exp < 1000) {
+        earnSP();
+    } else if (exp > 249 && exp < 500) {
         level = 3;
-        hitPower += 25;
+        hitPower += 5;
         remExp = 1000 - exp;
-    } else if (exp > 999 && exp < 1750) {
+        earnSP();
+    } else if (exp > 499 && exp < 850) {
         level = 4;
-        hitPower += 25;
+        hitPower += 5;
         remExp = 1750 - exp;
-    } else if (exp > 1749 && exp < 2500) {
+        earnSP();
+    } else if (exp > 849 && exp < 1200) {
         level = 5;
-        hitPower += 25;
+        hitPower += 5;
         remExp = 2500 - exp;
-    } else if (exp > 2499 && exp < 4000) {
+        earnSP();
+    } else if (exp > 1199 && exp < 1600) {
         level = 6;
-        hitPower += 25;
+        hitPower += 5;
         remExp = 4000 - exp;
-    } else if (exp > 3999 && exp < 6500) {
+        earnSP();
+    } else if (exp > 1799 && exp < 2200) {
         level = 7;
-        hitPower += 25;
+        hitPower; //Max power from leveling
         remExp = 6500 - exp;
-    } else if (exp > 6499 && exp < 10000) {
+        earnSP();
+    } else if (exp > 2199 && exp < 3000) {
         level = 8;
-        hitPower; //Max
+        hitPower; //Max power from leveling
         remExp = 10000 - exp;
-    } else if (exp > 9999 && exp < 20000) {
+        earnSP();
+    } else if (exp > 2999 && exp < 5000) {
         level = 9;
-        hitPower; //Max
+        hitPower; //Max power from leveling
         remExp = 20000 - exp;
-    } else if (exp > 19999 && exp < 35000) {
+        earnSP();
+    } else if (exp > 4999 && exp < 10000) {
         level = 10;
-        hitPower; //Max
+        hitPower; //Max power from leveling
         remExp = 35000 - exp;
+        earnSP();
     } else {
         maxLevel();
     }
 }
 
+//Define the maximum level possible and win message
 const maxLevel = () => {
     if (exp === 4000) {
         enemyField.innerHTML = 
@@ -136,10 +164,12 @@ const reset = () => {
 
 //Launch a new game
 const newGame = () => {
-    loadDefaults();
     createEnemy();
     attack();
     updateLevel();
+    damageDealt();
+    totalClicks();
+    earnSP();
     upgrade();
     reset();
 }
