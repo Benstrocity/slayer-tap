@@ -1,6 +1,7 @@
 //Declare global variables
 const enemyField = document.querySelector('#enemyField');
-const upgrades = document.querySelector('#upgMenu');
+const upgMenu = document.querySelector('#upgMenu');
+const upgList = document.querySelector('#upgItems');
 const restart = document.querySelector('#restartGame');
 const totalDmgSpan = document.querySelector('#totalDmg');
 const totalHitsSpan = document.querySelector('#totalHits');
@@ -48,21 +49,20 @@ const attack = () => {
         }
         damageDealt();
         totalClicks();
-        earnSP();
     });
 }
 
 //Enemy death behavior
 const killEnemy = () => {
+    spSpan.innerHTML = sp;
     createEnemy();
-    earnSP(25);
+    let earnSP = () => {
+        spSpan.innerHTML = sp;
+        sp += 25;
+    }
+    earnSP(); //Earn slayerpoints
 }
 
-//Earn slayerpoints when monsters are killed
-const earnSP = increase => {
-    sp += increase;
-    return increase;
-}
 
 //Tally up total damage dealt
 const damageDealt = () => {
@@ -72,9 +72,13 @@ const damageDealt = () => {
 
 //Tally up total amount of clicks/taps on enemy
 const totalClicks = () => {
+    spSpan.innerHTML = sp;
     totalHitsSpan.innerHTML = totalHits;
     totalHits += 1;
-    spSpan.innerHTML = earnSP(2);
+    let earnSP = () => {
+        sp += 2;
+    }
+    earnSP(); //Earn slayerpoints
 }
 
 //Update experience and level
@@ -86,52 +90,78 @@ const updateLevel = () => {
     if (exp > 0 && exp < 100) {
         level = 1;
         remExp = 100 - exp;
-        earnSP();
     } else if (exp > 99 && exp < 250) {
         level = 2;
-        hitPower += 5;
+        hitPower += 1;
         remExp = 500 - exp;
-        earnSP();
+        let earnSP = () => {
+            sp += 50;
+        }
+    earnSP(); //Earn slayerpoints   
     } else if (exp > 249 && exp < 500) {
         level = 3;
-        hitPower += 5;
+        hitPower += 1;
         remExp = 1000 - exp;
-        earnSP();
+        let earnSP = () => {
+            sp += 50;
+        }
+    earnSP(); //Earn slayerpoints
     } else if (exp > 499 && exp < 850) {
         level = 4;
-        hitPower += 5;
+        hitPower += 1;
         remExp = 1750 - exp;
-        earnSP();
+        let earnSP = () => {
+            sp += 50;
+        }
+    earnSP(); //Earn slayerpoints
     } else if (exp > 849 && exp < 1200) {
         level = 5;
-        hitPower += 5;
+        hitPower += 1;
         remExp = 2500 - exp;
-        earnSP();
+        let earnSP = () => {
+            sp += 50;
+        }
+    earnSP();
     } else if (exp > 1199 && exp < 1600) {
         level = 6;
-        hitPower += 5;
+        hitPower += 1;
         remExp = 4000 - exp;
-        earnSP();
+        let earnSP = () => {
+            sp += 50;
+        }
+    earnSP(); //Earn slayerpoints
     } else if (exp > 1799 && exp < 2200) {
         level = 7;
         hitPower; //Max power from leveling
         remExp = 6500 - exp;
-        earnSP();
+        let earnSP = () => {
+            sp += 50;
+        }
+    earnSP(); //Earn slayerpoints
     } else if (exp > 2199 && exp < 3000) {
         level = 8;
-        hitPower; //Max power from leveling
+        hitPower += 1;
         remExp = 10000 - exp;
-        earnSP();
+        let earnSP = () => {
+            sp += 50;
+        }
+    earnSP(); //Earn slayerpoints
     } else if (exp > 2999 && exp < 5000) {
         level = 9;
-        hitPower; //Max power from leveling
+        hitPower += 1;
         remExp = 20000 - exp;
-        earnSP();
+        let earnSP = () => {
+            sp += 50;
+        }
+    earnSP(); //Earn slayerpoints
     } else if (exp > 4999 && exp < 10000) {
         level = 10;
-        hitPower; //Max power from leveling
+        hitPower += 1;
         remExp = 35000 - exp;
-        earnSP();
+        let earnSP = () => {
+            sp += 50;
+        }
+    earnSP(); //Earn slayerpoints
     } else {
         maxLevel();
     }
@@ -150,8 +180,13 @@ const maxLevel = () => {
 
 //Upgrades menu
 const upgrade = () => {
-    upgrades.addEventListener('click', () => {
-        alert('Feature coming soon.');
+    upgList.style.display = 'flex';
+}
+
+//Click behavior for Upgrades menu
+const toggleMenu = () => {
+    upgMenu.addEventListener('click', () => {
+        upgrade();
     });
 }
 
@@ -169,8 +204,7 @@ const newGame = () => {
     updateLevel();
     damageDealt();
     totalClicks();
-    earnSP();
-    upgrade();
+    toggleMenu();
     reset();
 }
 

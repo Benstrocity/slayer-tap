@@ -34,25 +34,53 @@
     margin: 10% auto;
 }
 
-#optionsMenu {
-    display: flex;
-    width: 75%;
-    margin: auto;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#upgWrapper,
-#restartWrapper {
+#upgWrapper {
     text-align: center;
-    font-size: 1.25rem;
+    position: relative;
 }
 
 #upgMenu {
     border: 1px solid #000;
     border-radius: 10px;
-    padding: 10%;
-    width: 120%;
+    padding: 5%;
+    width: 50%;
+    margin: auto;
+    background-color: #000;
+    color: #fff;
+}
+
+#upgItems {
+    display: none;
+    flex-direction: column;
+    padding: 0;
+    position: absolute;
+    margin-bottom: 0;
+    left: 25%;
+}
+
+#upgItems span {
+    padding-right: 10px;
+}
+
+#upgItems li {
+    display: flex;
+    padding-bottom: 15px;
+    width: 150px;
+}
+
+#upgItems button {
+    font-size: .75rem;
+    width: 100%;
+    height: 35px;
+    margin-top: 0;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 10px;
+}
+
+#upgItems button {
+    cursor: pointer;
 }
 
 #restartGame {
