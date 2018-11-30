@@ -8,6 +8,7 @@
 
 #gameWrapper {
     margin: auto;
+    min-width: 550px;
     width: 50%;
     height: 550px;
     border: 1px solid #000;
