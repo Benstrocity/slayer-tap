@@ -1,6 +1,5 @@
 //Declare global variables
 const enemyField = document.querySelector('#enemyField');
-const upgMenu = document.querySelector('#upgMenu');
 const upgList = document.querySelector('#upgItems');
 const restart = document.querySelector('#restartGame');
 const totalDmgSpan = document.querySelector('#totalDmg');
@@ -178,16 +177,9 @@ const maxLevel = () => {
     }
 }
 
-//Upgrades menu
-const upgrade = () => {
-    upgList.style.display = 'flex';
-}
-
 //Click behavior for Upgrades menu
 const toggleMenu = () => {
-    upgMenu.addEventListener('click', () => {
-        upgrade();
-    });
+    
 }
 
 //Restart the game
@@ -204,7 +196,6 @@ const newGame = () => {
     updateLevel();
     damageDealt();
     totalClicks();
-    toggleMenu();
     reset();
 }
 
