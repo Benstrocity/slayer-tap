@@ -1,1 +1,5 @@
 ****Slayer Tap Change Log****
+12/4/2018
+- Add upgrade shop
+- Refactoring code for better performance
+- Still need to work on feature that increments SP/Hit when upgrade is purchased
