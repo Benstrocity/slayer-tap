@@ -3,3 +3,9 @@
 - Add upgrade shop
 - Refactoring code for better performance
 - Still need to work on feature that increments SP/Hit when upgrade is purchased
+
+2/26/2020
+- Add instructions to top of game
+- Play test older code
+- Fixed a discrepency with max level/game over trigger
+- Refactored newGame function to an IIFE to elimnate unnecessary line of code

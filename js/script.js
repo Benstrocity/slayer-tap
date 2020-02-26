@@ -133,7 +133,7 @@ const updateLevel = () => {
 
 //Define the maximum level possible and win message
 const maxLevel = () => {
-    if (exp === 4000) {
+    if (exp === 10000) {
         enemyField.innerHTML = 
             `<h2>Congratulations, you have reached the max level!</h2>`;
         enemyField.addEventListener('click', () => {
@@ -211,15 +211,13 @@ const reset = () => {
 }
 
 //Launch a new game
-const newGame = () => {
+(function newGame() {
     createEnemy(); //Spawn the first enemy
     attack(); //Enable attack functionality
     buyUpgrades(); //Enable the shop to be used
     reset(); //Allow new games to be started
     updateCounters(); //Set counters to load defaults
-}
-
-newGame(); //Start a new game on load
+})();
 
 
 
